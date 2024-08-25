@@ -8,7 +8,10 @@ SECRET_KEY = config('SECRET_KEY', default='default-secret-key')
 
 DEBUG = config('DEBUG', default='False') == 'True'
 
-ALLOWED_HOSTS = ['finalkittygramiu.tech', 'localhost', '127.0.0.1', '51.250.105.252']
+ALLOWED_HOSTS = [
+    'finalkittygramiu.tech', 'localhost', 
+    '127.0.0.1', '51.250.105.252'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -68,16 +71,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
     },
 ]
 
@@ -109,7 +124,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': (
+        'rest_framework.pagination.PageNumberPagination'
+    ),
     'PAGE_SIZE': 10,
 
 }
