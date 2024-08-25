@@ -4,10 +4,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$')
-
+SECRET_KEY = os.environ.get('SECRET_KEY', default='abgjw8mo!4y-q*uq1!4$-89$')
 DEBUG = True
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'finalkittygramiu.tech', '51.250.105.252', "backend"]
 
 INSTALLED_APPS = [
@@ -87,7 +85,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 STATIC_URL = '/static/'
 
