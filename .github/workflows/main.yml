@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -31,11 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:13
+        image: postgres:13.10
         env:
           POSTGRES_DB: kittygram
           POSTGRES_USER: kittygram_user
-          POSTGRES_PASSWORD: yourpassword
+          POSTGRES_PASSWORD: Kittygram1234
           POSTGRES_HOST: localhost
         ports:
           - 5432:5432
@@ -49,13 +51,16 @@ jobs:
     env:
       POSTGRES_DB: kittygram
       POSTGRES_USER: kittygram_user
-      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_PASSWORD: Kittygram1234
       POSTGRES_HOST: localhost
-      DJANGO_SECRET_KEY: your_secret_key
+      DJANGO_SECRET_KEY: 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
+      GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -96,6 +101,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
@@ -121,12 +128,12 @@ jobs:
     steps:
       - name: Deploy to server
         run: |
-          ssh user@your_server_ip 'cd /path_to_your_project && docker-compose pull && docker-compose up -d'
+          ssh yc-user@51.250.105.252 'cd /Users/angel/kittygram_final && docker-compose pull && docker-compose up -d'
 
       - name: Run database migrations and collect static files
         run: |
-          ssh user@your_server_ip 'docker-compose exec backend python manage.py migrate'
-          ssh user@your_server_ip 'docker-compose exec backend python manage.py collectstatic --noinput'
+          ssh yc-user@51.250.105.252 'docker-compose exec backend python manage.py migrate'
+          ssh yc-user@51.250.105.252 'docker-compose exec backend python manage.py collectstatic --noinput'
           
       - name: Notify on Telegram
         run: |
