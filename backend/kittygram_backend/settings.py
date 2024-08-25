@@ -2,13 +2,25 @@
 import os
 from pathlib import Path
 
+default_secret_key='cg6*%6d51ef8f#4!r3*$vmxm4)abgfaeah3256&**&$^'
+django_defaults = {
+    UAS:'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    MLen:'django.contrib.auth.password_validation.MinimumLengthValidator',
+    CPwd:'django.contrib.auth.password_validation.CommonPasswordValidator',
+    NumPwd:'django.contrib.auth.password_validation.NumericPasswordValidator',
+}
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$')
-
+SECRET_KEY = os.environ.get('SECRET_KEY', default=default_secret_key)
 DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'finalkittygramiu.tech', '51.250.105.252', "backend"]
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'finalkittygramiu.tech',
+    '51.250.105.252',
+    'backend',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,16 +77,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': django_defaults.UAS,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': django_defaults.MLen,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': django_defaults.CPwd,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': django_defaults.NumPwd,
     },
 ]
 
@@ -88,9 +100,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
