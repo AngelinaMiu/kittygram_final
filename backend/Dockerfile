@@ -6,6 +6,8 @@ RUN pip install gunicorn==20.1.0
 
 COPY requirements.txt .
 
+RUN source backend/venv/bin/activate
+
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
