@@ -35,10 +35,10 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/build
       - media_volume:/app/media
     ports:
-      - "80:80"
+      - 7779:80
     depends_on:
       - backend
       - frontend

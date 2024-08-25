@@ -1,15 +1,2 @@
-FROM node:14-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+FROM nginx:1.22.1
+COPY nginx.conf /etc/nginx/templates/default.conf.template
