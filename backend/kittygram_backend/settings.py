@@ -3,12 +3,6 @@ import os
 from pathlib import Path
 
 default_secret_key='cg6*%6d51ef8f#4!r3*$vmxm4)abgfaeah3256&**&$^'
-django_defaults = {
-    UAS:'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    MLen:'django.contrib.auth.password_validation.MinimumLengthValidator',
-    CPwd:'django.contrib.auth.password_validation.CommonPasswordValidator',
-    NumPwd:'django.contrib.auth.password_validation.NumericPasswordValidator',
-}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,16 +71,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': django_defaults.UAS,
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': django_defaults.MLen,
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': django_defaults.CPwd,
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': django_defaults.NumPwd,
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
