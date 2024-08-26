@@ -121,7 +121,7 @@ jobs:
     steps:
       - name: Deploy to server
         run: |
-          ssh yc-user@y51.250.105.252 'cd /home/yc-user/kittygram_final && docker-compose pull && docker-compose up -d'
+          ssh yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && docker-compose pull && docker-compose up -d'
 
       - name: Run database migrations and collect static files
         run: |
