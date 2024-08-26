@@ -1,12 +1,15 @@
 # flake8: noqa
 import os
+
 from pathlib import Path
 
 default_secret_key='cg6*%6d51ef8f#4!r3*$vmxm4)abgfaeah3256&**&$^'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', default=default_secret_key)
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', default=default_secret_key
+)
 DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
@@ -85,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
