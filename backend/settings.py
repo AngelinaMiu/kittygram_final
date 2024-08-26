@@ -1,12 +1,15 @@
 import os
 
-
-SECRET_KEY = 'sk9qxw2n1p6b&$5bkh63^h(_02*c3&(c8#7s(3u4xk-j!g_s8'
-
+SECRET_KEY = (
+    'sk9qxw2n1p6b&$5bkh63^h(_02*c3&(c8#7s(3u4xk-j!g_s8'
+)
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'finalkittygramiu.tech', '51.250.105.252', "backend"]
+ALLOWED_HOSTS = [
+    'localhost', '127.0.0.1', 'finalkittygramiu.tech',
+    '51.250.105.252', "backend"
+]
 
 
 INSTALLED_APPS = [
@@ -69,20 +72,30 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
     },
 ]
-
-
 
 
 LANGUAGE_CODE = 'en-us'
@@ -96,11 +109,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
 STATIC_URL = '/static/'
-
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
