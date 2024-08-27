@@ -128,12 +128,12 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && docker-compose pull && docker-compose up -d'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && sudo docker-compose pull && sudo docker-compose up -d'
 
       - name: Run database migrations and collect static files
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'docker-compose exec backend python manage.py migrate'
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'docker-compose exec backend python manage.py collectstatic --noinput'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'sudo docker-compose exec backend python manage.py migrate'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'sudo docker-compose exec backend python manage.py collectstatic --noinput'
 
       - name: Notify on Telegram
         run: |
