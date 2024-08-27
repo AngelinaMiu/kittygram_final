@@ -51,7 +51,7 @@ jobs:
       POSTGRES_USER: angel
       POSTGRES_PASSWORD: 3357
       POSTGRES_HOST: localhost
-      DJANGO_SECRET_KEY: sk9qxw2n1p6b&$5bkh63^h(_02*c3&(c8#7s(3u4xk-j!g_s8)
+      DJANGO_SECRET_KEY: sk9qxw2n1p6b&$5bkh63^h(_02*c3&(c8#7s(3u4xk-j!g_s8
 
     steps:
       - name: Checkout code
@@ -122,13 +122,15 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && docker-compose pull && docker-compose up -d'
+
       - name: Run database migrations and collect static files
         run: |
           ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no yc-user@51.250.105.252 'docker-compose exec backend python manage.py migrate'
           ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no yc-user@51.250.105.252 'docker-compose exec backend python manage.py collectstatic --noinput'
 
-    - name: Notify on Telegram
+      - name: Notify on Telegram
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
             -d text="Kittygram deployment completed successfully"
+
