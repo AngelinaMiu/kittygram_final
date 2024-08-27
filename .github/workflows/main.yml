@@ -122,6 +122,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create SSH directory
+        run: mkdir -p ~/.ssh
+
       - name: Save SSH key
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
