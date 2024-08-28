@@ -1,15 +1,11 @@
 import os
 
-SECRET_KEY = (
-    'sk9qxw2n1p6b&$5bkh63^h(_02*c3&(c8#7s(3u4xk-j!g_s8'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY'
 )
 
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    'localhost', '127.0.0.1', 'finalkittygramiu.tech',
-    '51.250.105.252', "backend"
-]
+DEBUG = os.environ.get("DJANGO_DEBUG", False)
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
 
 INSTALLED_APPS = [
