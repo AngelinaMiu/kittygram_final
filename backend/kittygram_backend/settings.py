@@ -13,14 +13,6 @@ DEBUG = os.environ.get("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
-# [
-#     'localhost',
-#     '127.0.0.1',
-#     'finalkittygramiu.tech',
-#     '51.250.105.252',
-#     'backend',
-# ]
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
