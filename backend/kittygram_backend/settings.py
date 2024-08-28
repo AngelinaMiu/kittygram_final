@@ -2,21 +2,24 @@
 import os
 from pathlib import Path
 
-default_secret_key='cg6*%6d51ef8f#4!r3*$vmxm4)abgfaeah3256&**&$^'
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
-    'SECRET_KEY', default=default_secret_key
+    'DJANGO_SECRET_KEY'
 )
-DEBUG = True
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'finalkittygramiu.tech',
-    '51.250.105.252',
-    'backend',
-]
+
+DEBUG = os.environ.get("DEBUG")
+
+
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+
+# [
+#     'localhost',
+#     '127.0.0.1',
+#     'finalkittygramiu.tech',
+#     '51.250.105.252',
+#     'backend',
+# ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
