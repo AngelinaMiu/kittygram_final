@@ -7,9 +7,7 @@ services:
       - .env
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: $DOCKERHUB_USERNAME/kittygram_backend
     command: gunicorn --bind 0.0.0.0:8000 kittygram_backend.wsgi:application
     volumes:
       - static_volume:/app/static
@@ -20,20 +18,16 @@ services:
       - db
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: $DOCKERHUB_USERNAME/kittygram_frontend
     volumes:
-      - static_volume:/app/build
+      - static_volume:/app/static
     depends_on:
       - backend
 
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: $DOCKERHUB_USERNAME/kittygram_gateway
     volumes:
-      - static_volume:/app/build
+      - static_volume:/app/static
       - media_volume:/app/media
     ports:
       - 7779:80
@@ -45,3 +39,4 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
+
