@@ -7,7 +7,7 @@ services:
       - .env
 
   backend:
-    image: $DOCKERHUB_USERNAME/kittygram_backend
+    image: miura193/kittygram_backend
     command: gunicorn --bind 0.0.0.0:8000 kittygram_backend.wsgi:application
     volumes:
       - static_volume:/app/static
@@ -18,14 +18,14 @@ services:
       - db
 
   frontend:
-    image: $DOCKERHUB_USERNAME/kittygram_frontend
+    image: miura193/kittygram_frontend
     volumes:
       - static_volume:/app/static
     depends_on:
       - backend
 
   nginx:
-    image: $DOCKERHUB_USERNAME/kittygram_gateway
+    image: miura193/kittygram_gateway
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
