@@ -127,6 +127,19 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 51.250.105.252 >> ~/.ssh/known_hosts
 
+      - name: Create .env file on the server
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 << EOF
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" > /home/yc-user/kittygram_final/.env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> /home/yc-user/kittygram_final/.env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> /home/yc-user/kittygram_final/.env
+          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> /home/yc-user/kittygram_final/.env
+          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> /home/yc-user/kittygram_final/.env
+          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> /home/yc-user/kittygram_final/.env
+          echo "DJANGO_DEBUG=${{ secrets.DJANGO_DEBUG }}" >> /home/yc-user/kittygram_final/.env
+          echo "DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}" >> /home/yc-user/kittygram_final/.env
+          EOF
+
       - name: Deploy to server
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} && sudo docker-compose pull && sudo docker-compose up -d'
