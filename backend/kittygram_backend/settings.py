@@ -11,9 +11,9 @@ SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY'
 )
 
-DEBUG = os.environ.get("DJANGO_DEBUG")
+DEBUG = os.environ.get("DJANGO_DEBUG") == 'True'
 
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+ALLOWED_HOSTS = os.environ.get["ALLOWED_HOSTS"].split(" ")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +39,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kittygram_backend.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -106,11 +105,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': (
+        'rest_framework.pagination.PageNumberPagination'
+    ),
     'PAGE_SIZE': 10,
 }
