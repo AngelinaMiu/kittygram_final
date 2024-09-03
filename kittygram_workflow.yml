@@ -40,9 +40,9 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U ${{ env.POSTGRES_USER }}" 
-          --health-interval=10s 
-          --health-timeout=5s 
+          --health-cmd="pg_isready -U ${{ env.POSTGRES_USER }}"
+          --health-interval=10s
+          --health-timeout=5s
           --health-retries=5
         volume:
           - postgres_data:/var/lib/postgresql/data
@@ -52,6 +52,7 @@ jobs:
       POSTGRES_PASSWORD: yourpassword
       POSTGRES_HOST: localhost
       DJANGO_SECRET_KEY: your_secret_key
+      DJANGO_ALLOWED_HOSTS: "localhost 127.0.0.1 [::1] finalkittygramiu.tech 51.250.105.252"
 
     steps:
       - name: Checkout code
