@@ -148,7 +148,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && sudo docker-compose exec backend python manage.py migrate'
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final && sudo docker-compose exec backend python manage.py collectstatic --noinput'
-
+# Извещать вас в Telegram об успешном завершении деплоя .       
       - name: Notify on Telegram
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
