@@ -126,14 +126,14 @@ jobs:
     steps:
       - name: Deploy to server
         run: |
-          ssh user@your_server_ip 'cd /path_to_your_project &&
-          docker-compose pull &&
-          docker-compose up -d'
+          ssh -i yc-angelinamiu11 yc-user@51.250.105.252 'cd /home/yc-user/kittygram_final &&
+          docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml pull &&
+          docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml up -d'
 
       - name: Run database migrations and collect static files
         run: |
-          ssh user@your_server_ip 'docker-compose exec backend python manage.py migrate'
-          ssh user@your_server_ip 'docker-compose exec backend python manage.py collectstatic --noinput'
+          ssh -i yc-angelinamiu11 yc-user@51.250.105.252 'docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml exec backend python manage.py migrate'
+          ssh -i yc-angelinamiu11 yc-user@51.250.105.252 'docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml exec backend python manage.py collectstatic --noinput'
 
       - name: Notify on Telegram # Шаг отправки уведосления в телеграмм
         run: |
