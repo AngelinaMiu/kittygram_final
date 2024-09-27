@@ -1,20 +1,20 @@
-import time
-import logging
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
 
-logger = logging.getLogger(__name__)
+from .models import Achievement, Cat
+from .serializers import AchievementSerializer, CatSerializer
 
-@api_view(['GET'])
-def my_view(request):
-    start_time = time.time()
 
-    try:
-        result = some_database_query()
+class CatViewSet(viewsets.ModelViewSet):
+    queryset = Cat.objects.all()
+    serializer_class = CatSerializer
+    pagination_class = PageNumberPagination
 
-        logger.info("Время выполнения запроса: %s секунд", time.time() - start_time)
-        return Response(result)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-    except Exception as e:
-        logger.error("Ошибка в my_view: %s", e)
-        return Response({"error": "Произошла ошибка"}, status=500)
+
+class AchievementViewSet(viewsets.ModelViewSet):
+    queryset = Achievement.objects.all()
+    serializer_class = AchievementSerializer
+    pagination_class = None
