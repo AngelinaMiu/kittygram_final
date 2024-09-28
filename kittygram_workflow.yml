@@ -53,8 +53,7 @@ jobs:
       POSTGRES_HOST: localhost
       DJANGO_SECRET_KEY: your_secret_key
       DJANGO_ALLOWED_HOSTS: >
-        "localhost 127.0.0.1 [::1] finalkittygramiu.tech
-        51.250.105.252"
+        "localhost 127.0.0.1 backend finalkittygramiu.tech 51.250.105.252"
 
     steps:
       - name: Checkout code
@@ -134,8 +133,8 @@ jobs:
         run: |
           ssh -i yc-angelinamiu11 yc-user@51.250.105.252 'docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml exec backend python manage.py migrate'
           ssh -i yc-angelinamiu11 yc-user@51.250.105.252 'docker-compose -f /home/yc-user/kittygram_final/docker-compose.yml exec backend python manage.py collectstatic --noinput'
-
-      - name: Notify on Telegram # Шаг отправки уведосления в телеграмм
+      # Шаг отправки уведосления в телеграмм
+      - name: Notify on Telegram
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
