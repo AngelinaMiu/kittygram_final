@@ -55,8 +55,8 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql'
-        'NAME': str(os.getenv('DB_NAME', 'kittygram')),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'kittygram'),
         'USER': os.getenv('DB_USER', 'kittygram_user'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
         'HOST': os.getenv('DB_HOST', 'localhost,127.0.0.1,backend,finalkittygramiu.tech,51.250.105.252'),
@@ -115,6 +115,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', 
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
