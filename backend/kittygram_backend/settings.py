@@ -59,7 +59,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'kittygram'),
         'USER': os.getenv('DB_USER', 'kittygram_user'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
-        'HOST': os.getenv('DB_HOST', 'db'),
+        'HOST': 'db',
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
