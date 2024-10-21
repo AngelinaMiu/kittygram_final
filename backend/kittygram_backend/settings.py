@@ -4,6 +4,12 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(f"POSTGRES_DB: {os.getenv('POSTGRES_DB')}")
+print(f"POSTGRES_USER: {os.getenv('POSTGRES_USER')}")
+print(f"POSTGRES_PASSWORD: {os.getenv('POSTGRES_PASSWORD')}")
+print(f"POSTGRES_HOST: {os.getenv('POSTGRES_HOST')}")
+print(f"POSTGRES_PORT: {os.getenv('POSTGRES_PORT')}")
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
@@ -55,12 +61,8 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'kittygram'),
-        'USER': os.getenv('DB_USER', 'kittygram_user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

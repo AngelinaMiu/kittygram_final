@@ -1,16 +1,19 @@
+# docker-compose.production.yml
 version: '3'
 
 volumes:
-  pg_data_production:                                                                                           
-  static_volume:                                                                                                
-                                                                                                              
+  pg_data_production:
+  static_volume:
+
 services:
-  db:                                                                                                      
-    image: postgres:13.10
-    env_file: .env                                                                                        
-    volumes:                                                                                              
-      - pg_data_production:/var/lib/postgresql/data                                                    
-  backend:                                                                                             
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+
+  backend:
     image: miura193/kittygram_backend
     env_file: .env
     volumes:
