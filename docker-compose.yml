@@ -63,9 +63,9 @@ services:
       - kittygram_network
 
 volumes:
-  postgres_data:
-  static_volume:
-  media_volume:
+  pg_data:
+  volume:
+  static:
 
 networks:
   kittygram_network:
