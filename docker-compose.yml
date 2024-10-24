@@ -37,7 +37,7 @@ services:
     networks:
       - kittygram_network
 
- nginx:
+  nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -58,6 +58,6 @@ volumes:
   media_volume:
 
 networks:
-      - kittygram_network
-          driver: bridge
+  kittygram_network:
+    driver: bridge
 
