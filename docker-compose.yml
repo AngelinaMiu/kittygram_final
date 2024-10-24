@@ -45,7 +45,7 @@ services:
       - static_volume:/app/build
       - media_volume:/app/media
     ports:
-      - 7779:80
+      - 8000:80
     depends_on:
       - backend
       - frontend
@@ -55,7 +55,7 @@ services:
   gateway:
     image: miura193/kittygram_gateway
     ports:
-      - "7778:80"
+      - "8000:80"
     depends_on:
       - backend
       - frontend
