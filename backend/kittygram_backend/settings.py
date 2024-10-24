@@ -1,14 +1,17 @@
 # flake8: noqa
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default_secret_key')
 
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split()
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,11 +59,11 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('POSTGRES_DB', 'kittygram')),
-        'USER': str(os.getenv('POSTGRES_USER', 'kittygram_user')),
-        'PASSWORD': str(os.getenv('POSTGRES_PASSWORD', 'yourpassword')),
-        'HOST': str(os.getenv('POSTGRES_HOST', 'db')),
-        'PORT': str(os.getenv('POSTGRES_PORT', '5432')),
+        'NAME': os.getenv('POSTGRES_DB', 'kittygram'),
+        'USER': os.getenv('POSTGRES_USER', 'kittygram_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'yourpassword'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 

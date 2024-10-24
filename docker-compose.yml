@@ -52,6 +52,16 @@ services:
     networks:
       - kittygram_network
 
+  gateway:
+    image: miura193/kittygram_gateway
+    ports:
+      - "7778:80"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - kittygram_network
+
 volumes:
   postgres_data:
   static_volume:
@@ -60,4 +70,3 @@ volumes:
 networks:
   kittygram_network:
     driver: bridge
-
