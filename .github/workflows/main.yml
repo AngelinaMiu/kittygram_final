@@ -137,7 +137,7 @@ jobs:
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> /home/yc-user/kittygram_final/.env
           echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> /home/yc-user/kittygram_final/.env
           echo "DJANGO_DEBUG=${{ secrets.DJANGO_DEBUG }}" >> /home/yc-user/kittygram_final/.env
-          echo "ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}" >> /home/yc-user/kittygram_final/.env
+          echo "DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}" >> /home/yc-user/kittygram_final/.env
           EOF
 
       - name: Deploy to server

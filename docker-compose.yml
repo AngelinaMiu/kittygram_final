@@ -14,7 +14,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: gunicorn --bind 0.0.0.0:8000 kittygram_backend.wsgi:application
+    command: gunicorn --bind 0.0.0.0:7779 kittygram_backend.wsgi:application
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
