@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-CMD ["gunicorn", "--bind", "0.0.0.0:7779", "backend.wsgi"]
+CMD ["gunicorn", "--bind", "0.0.0.0:7779", "kittygram_backend.wsgi"]
 
 ENV PIP_ROOT_USER_ACTION=ignore
